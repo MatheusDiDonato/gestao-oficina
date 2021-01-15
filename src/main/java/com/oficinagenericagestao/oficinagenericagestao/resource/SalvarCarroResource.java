@@ -34,7 +34,7 @@ public class SalvarCarroResource {
 	public Iterable<Carro> ordemDeServico(@RequestBody Carro carro) {
 	
 		carroRepository.save(carro);
-		return carroRepository.findAll();
+		return ResponseEntity.ok(carroRepository.findAll());
 	}
 
 }
