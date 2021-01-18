@@ -26,11 +26,21 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String telefone;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinTable(name = "carro_cliente", joinColumns = {
-			@JoinColumn(name = "cliente_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "carro_id", referencedColumnName = "id") })
-	private Carro carro;
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 	public Cliente(String nome, String telefone) {
 		super();
@@ -38,9 +48,9 @@ public class Cliente implements Serializable {
 		this.telefone = telefone;
 	}
 
-	// private List endereco;
+	public Cliente() {
+		// TODO Auto-generated constructor stub
+	}
 
-	// @OneToMany
-	// private List carro;
 
 }

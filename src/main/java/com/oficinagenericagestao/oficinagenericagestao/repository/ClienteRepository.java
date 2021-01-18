@@ -1,10 +1,11 @@
 package com.oficinagenericagestao.oficinagenericagestao.repository;
+
+import com.oficinagenericagestao.oficinagenericagestao.domain.Cliente;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.oficinagenericagestao.oficinagenericagestao.domain.Carro;
-
 @Repository
-public interface CarroRepository extends CrudRepository<Carro, Long>{
-	
+public interface ClienteRepository extends CrudRepository<Cliente, Long>{
+    
 }
