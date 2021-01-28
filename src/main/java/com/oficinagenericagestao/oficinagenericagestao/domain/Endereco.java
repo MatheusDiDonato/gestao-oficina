@@ -1,5 +1,4 @@
 package com.oficinagenericagestao.oficinagenericagestao.domain;
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -23,7 +22,6 @@ public class Endereco implements Serializable {
 	public Endereco(String string, int i, String string2, int j, String string3) {
 	}
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -32,5 +30,4 @@ public class Endereco implements Serializable {
 	private String complemento;
 	private Integer cep;
 	private String cidade;
-
 }

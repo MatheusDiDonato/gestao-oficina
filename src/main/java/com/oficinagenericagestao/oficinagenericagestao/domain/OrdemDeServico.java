@@ -64,9 +64,10 @@ public class OrdemDeServico {
         return dataDeEntrada;
     }
 
-    public void setDataDeEntrada(LocalDateTime dataDeEntrada) {
+      public void setDataDeEntrada(LocalDateTime dataDeEntrada) {
         this.dataDeEntrada = dataDeEntrada;
     }
+
 
     public String getDescicao() {
         return descicao;
