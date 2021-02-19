@@ -1,33 +1,23 @@
 package com.oficinagenericagestao.oficinagenericagestao.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.oficinagenericagestao.oficinagenericagestao.enums.ServicosPrestados;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class OrdemDeServico implements Serializable{
+public class Ordem implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,11 +29,35 @@ public class OrdemDeServico implements Serializable{
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    public Ordem(Long id, Carro carro, Cliente cliente) {
+        this.id = id;
+        this.carro = carro;
+        this.cliente = cliente;
+    }
 
-    @Enumerated(EnumType.STRING)
-    private ServicosPrestados servicosPrestados;
-    private Date dataDeEntrada;
-    private String descricao;
-    private BigDecimal valorDoServico;
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Carro getCarro() {
+        return carro;
+    }
+
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+ 
 }
