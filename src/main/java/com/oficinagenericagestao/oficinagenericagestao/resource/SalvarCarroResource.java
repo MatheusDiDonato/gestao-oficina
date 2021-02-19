@@ -2,6 +2,8 @@ package com.oficinagenericagestao.oficinagenericagestao.resource;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import com.oficinagenericagestao.oficinagenericagestao.domain.Carro;
 import com.oficinagenericagestao.oficinagenericagestao.domain.OrdemDeServico;
 import com.oficinagenericagestao.oficinagenericagestao.repository.CarroRepository;
@@ -42,7 +44,12 @@ public class SalvarCarroResource {
 
 	@GetMapping(value = "/busca-veiculo/{placa}")
 	public ResponseEntity<?> buscaCarroPorPlaca(@PathVariable String placa) {
+		try{
 		List<Carro> carro = carroRepository.findByPlacaDoVeiculo(placa);
+		}catch(NoResultException e){
+			e.fillInStackTrace();
+		}
+	List<Carro> carro = carroRepository.findByPlacaDoVeiculo(placa);
 	return ResponseEntity.ok().body(carro);
 	}
 
