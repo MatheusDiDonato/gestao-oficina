@@ -1,7 +1,6 @@
 package com.oficinagenericagestao.oficinagenericagestao.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.oficinagenericagestao.oficinagenericagestao.domain.Carro;
 
