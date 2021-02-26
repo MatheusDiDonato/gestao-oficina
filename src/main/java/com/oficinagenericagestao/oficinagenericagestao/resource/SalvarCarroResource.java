@@ -53,8 +53,6 @@ public class SalvarCarroResource {
 	return ResponseEntity.ok().body(carro);
 	}
 
-
-	
 	@PostMapping(value = "/insere-veiculo")
 	public ResponseEntity cadastraVeiculo(@RequestBody Carro carro){
 		System.out.println(carro);

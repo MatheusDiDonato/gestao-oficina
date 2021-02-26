@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository  extends JpaRepository<Usuario, Long>{
     
-@Query(value = "select cpf from usuario usuario where usuario.cpf= :cpf")
+@Query(value = "select u from usuario u where u.cpf= :cpf")
    Usuario findByCpf(String cpf);
 
 }
