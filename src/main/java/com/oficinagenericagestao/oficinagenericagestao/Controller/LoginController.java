@@ -1,4 +1,4 @@
-package com.oficinagenericagestao.oficinagenericagestao.resource;
+package com.oficinagenericagestao.oficinagenericagestao.Controller;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import com.oficinagenericagestao.oficinagenericagestao.domain.Usuario;
 import com.oficinagenericagestao.oficinagenericagestao.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,18 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/login")
-public class LoginResource {
-    
-    
+public class LoginController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @PostMapping(value = "/logar")
-    public ResponseEntity<String> fazLogin(@RequestBody UsuarioDTO usuarioDTO) {
-    String password = usuarioDTO.getSenha();
-    Usuario usuario = usuarioRepository.findByCpf(usuarioDTO.getCpf());
-    return ResponseEntity.ok().body(UsuarioUtils.validaUsuario(usuario, password));
+    public String fazLogin(@RequestBody UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioRepository.findByCpf(usuarioDTO.getCpf());
+        return UsuarioUtils.validaUsuario(usuarioDTO, usuario);
     }
 
     @GetMapping(value = "/listar-usuarios")
@@ -36,10 +32,8 @@ public class LoginResource {
         return usuarioRepository.findAll();
     }
 
-
     @PostMapping(value = "/teste")
-    public String teste(){
+    public String teste() {
         return "ok";
     }
 }
-
