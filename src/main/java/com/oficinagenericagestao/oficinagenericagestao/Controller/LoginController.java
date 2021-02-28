@@ -8,6 +8,7 @@ import com.oficinagenericagestao.oficinagenericagestao.domain.Usuario;
 import com.oficinagenericagestao.oficinagenericagestao.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +22,13 @@ public class LoginController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private UsuarioUtils usuarioUtils;
+   
+
     @PostMapping(value = "/logar")
-    public String fazLogin(@RequestBody UsuarioDTO usuarioDTO) {
-        Usuario usuario = usuarioRepository.findByCpf(usuarioDTO.getCpf());
-        return UsuarioUtils.validaUsuario(usuarioDTO, usuario);
+    public ResponseEntity<?> fazLogin(@RequestBody UsuarioDTO usuarioDTO){
+        return ResponseEntity.ok().body(usuarioUtils.validaUsuario(usuarioDTO));
     }
 
     @GetMapping(value = "/listar-usuarios")
