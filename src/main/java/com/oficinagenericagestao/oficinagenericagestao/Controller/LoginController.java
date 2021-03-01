@@ -31,13 +31,18 @@ public class LoginController {
         return ResponseEntity.ok().body(usuarioUtils.validaUsuario(usuarioDTO));
     }
 
+    @PostMapping(value = "/cadastrar-usuario")
+    public ResponseEntity<?> criaNovoUsuario(@RequestBody Usuario usuario){
+        return ResponseEntity.ok().body(usuarioUtils.criaNovoUsuario(usuario));
+    }
+
     @GetMapping(value = "/listar-usuarios")
     public List<Usuario> buscaUsuario() {
         return usuarioRepository.findAll();
     }
 
-    @PostMapping(value = "/teste")
+    @GetMapping(value = "/barbara")
     public String teste() {
-        return "ok";
+        return "gostosa";
     }
 }
