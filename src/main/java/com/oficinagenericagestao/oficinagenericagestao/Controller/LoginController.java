@@ -36,7 +36,7 @@ public class LoginController {
         return ResponseEntity.ok().body(usuarioUtils.criaNovoUsuario(usuario));
     }
 
-    @GetMapping(value = "/listar-usuarios")
+    @GetMapping(value = "/listar-usuario")
     public List<Usuario> buscaUsuario() {
         return usuarioRepository.findAll();
     }

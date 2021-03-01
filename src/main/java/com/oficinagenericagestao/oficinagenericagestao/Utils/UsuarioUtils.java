@@ -28,11 +28,17 @@ public class UsuarioUtils {
         try {
             Usuario usuario = usuarioRepository.findByCpf(usuarioMetodo.getCpf());
             if (usuario.getCpf() != null) {
-                return ResponseEntity.ok().body("Ja existe um cadastro para este cpf");
+                return ResponseEntity.status(400).body("Já existe um cadastro para este cpf.");
             }
         } catch (NullPointerException E) {
-            return ResponseEntity.ok().body("Nao existem usuarios, este pode ser cadastrado");
+            if(usuarioMetodo.getCpf().length()<11){
+                return ResponseEntity.status(400).body("Este cpf não pode ser cadastrado.");
+            }else if(usuarioMetodo.getCpf().length()>11){
+                return ResponseEntity.status(400).body("Este cpf não pode ser cadastrado.");
+            }
         }
-        return null;
+        usuarioRepository.save(usuarioMetodo);
+        return ResponseEntity.ok().body("Usuario cadastrado com sucesso. Seja bem vindo "
+         + usuarioMetodo.getNome().toUpperCase());
     }
 }
