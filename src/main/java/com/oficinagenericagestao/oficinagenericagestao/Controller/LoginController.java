@@ -24,15 +24,14 @@ public class LoginController {
 
     @Autowired
     private UsuarioUtils usuarioUtils;
-   
 
     @PostMapping(value = "/logar")
-    public ResponseEntity<?> fazLogin(@RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<?> fazLogin(@RequestBody UsuarioDTO usuarioDTO) {
         return ResponseEntity.ok().body(usuarioUtils.validaUsuario(usuarioDTO));
     }
 
     @PostMapping(value = "/cadastrar-usuario")
-    public ResponseEntity<?> criaNovoUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<?> criaNovoUsuario(@RequestBody Usuario usuario) {
         return ResponseEntity.ok().body(usuarioUtils.criaNovoUsuario(usuario));
     }
 

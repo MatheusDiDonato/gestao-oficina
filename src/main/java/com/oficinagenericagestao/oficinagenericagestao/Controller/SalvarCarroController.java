@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SalvarCarroController {
 
 	// @Autowired
-	private CarroRepository carroRepository;
+	public CarroRepository carroRepository;
 	@Autowired
-	private OrdemDeServicoRepository ordemDeServicoRepository;
+	public OrdemDeServicoRepository ordemDeServicoRepository;
 
 	@Autowired
 	private ClienteRepository clienteRepository;
