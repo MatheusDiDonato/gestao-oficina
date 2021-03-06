@@ -16,10 +16,12 @@ public class OrdemDeServicoService {
     public ResponseEntity<?> registraOrdemDeServico(OrdemDeServico ordemDeServico){
         if(ordemDeServico.getCarro().getPlacaDoVeiculo() == null){
             return ResponseEntity.badRequest().body("A placa do veiculo não pode ser nula.");
-        }else if (ordemDeServico.getCliente() == null){
+        }else if (ordemDeServico.getCliente().getNome() == null){
+            return ResponseEntity.badRequest().body("O cliente não pode ser nulo");
+        }else if (ordemDeServico.getCliente().getTelefone() == null){
             return ResponseEntity.badRequest().body("O cliente não pode ser nulo");
         }
-         return ResponseEntity.badRequest().body(ordemDeServicoRepository.save(ordemDeServico));
+         return ResponseEntity.ok().body(ordemDeServicoRepository.save(ordemDeServico));
     }
 
 }

@@ -28,7 +28,7 @@ public class OrdemDeServico implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToOne (cascade=CascadeType.PERSIST)
@@ -44,5 +44,6 @@ public class OrdemDeServico implements Serializable{
     private Date dataDeEntrada;
     private String descricao;
     private BigDecimal valorDoServico;
+    private Boolean statusDeOrdem;
 
 }
