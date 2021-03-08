@@ -6,10 +6,7 @@ import com.oficinagenericagestao.oficinagenericagestao.repository.OrdemDeServico
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/ordem")
@@ -33,4 +30,11 @@ public class OrdemDeServicoController {
     public ResponseEntity<?> criaOrdemDeServico(@RequestBody OrdemDeServico ordemDeServico){
         return ResponseEntity.ok().body(ordemDeServicoService.registraOrdemDeServico(ordemDeServico));
     }
+
+    @GetMapping("/busca-ordem-por-placa-{placa}")
+    public ResponseEntity<?> buscarOrdemPorPlacaDoVeiculo(@PathVariable String placa){
+        return ordemDeServicoService.buscaOrdemPorPlaca(placa);
+    }
+
+
 }
