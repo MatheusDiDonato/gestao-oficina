@@ -14,6 +14,7 @@ public interface CarroRepository extends CrudRepository<Carro, Long>{
     @Query(value = "select ca from carro ca where ca.placa_do_veiculo = :placa")
    List<Carro> findByPlacaDoVeiculo(String placa);
 
+
   
     
 }
