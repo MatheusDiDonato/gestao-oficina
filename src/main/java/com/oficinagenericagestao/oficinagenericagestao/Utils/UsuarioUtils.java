@@ -23,7 +23,7 @@ public class UsuarioUtils {
         }
     }
 
-    public ResponseEntity<String> criaNovoUsuario(Usuario usuarioMetodo) {
+    public ResponseEntity<?> criaNovoUsuario(Usuario usuarioMetodo) {
 
         try {
             Usuario usuario = usuarioRepository.findByCpf(usuarioMetodo.getCpf());

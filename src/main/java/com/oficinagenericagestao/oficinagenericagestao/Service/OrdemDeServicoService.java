@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -33,15 +35,13 @@ public class OrdemDeServicoService {
 
     public ResponseEntity<?> buscaOrdemPorPlaca(String placa) {
 
-        try {
-            List<Carro> carro;
-            carro = carroRepository.findByPlacaDoVeiculo(placa);
-            if (carro != null)
-                return ResponseEntity.ok().body(ordemDeServicoRepository.findAllByCarroPlacaDoVeiculo(placa));
-        } catch (NullPointerException E) {
+        Collection<OrdemDeServico> ordemDeServicos = (Collection<OrdemDeServico>) ordemDeServicoRepository.findAllByCarroPlacaDoVeiculo(placa);
+
+        if (ordemDeServicos.isEmpty()) {
             return ResponseEntity.ok().body("Ordem de serviço ou placa não foi encontrada.");
+        } else {
+            return ResponseEntity.badRequest().body(ordemDeServicos);
         }
-        return ResponseEntity.badRequest().body("Erro não encontrado");
     }
 
 
