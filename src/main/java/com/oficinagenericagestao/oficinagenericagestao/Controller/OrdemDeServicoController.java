@@ -1,5 +1,6 @@
 package com.oficinagenericagestao.oficinagenericagestao.Controller;
 
+import com.oficinagenericagestao.oficinagenericagestao.Dto.OrdemDeServicoDTO;
 import com.oficinagenericagestao.oficinagenericagestao.Service.OrdemDeServicoService;
 import com.oficinagenericagestao.oficinagenericagestao.domain.OrdemDeServico;
 import com.oficinagenericagestao.oficinagenericagestao.repository.OrdemDeServicoRepository;
@@ -27,13 +28,13 @@ public class OrdemDeServicoController {
     }
 
     @PostMapping("/registra-ordem")
-    public ResponseEntity<?> criaOrdemDeServico(@RequestBody OrdemDeServico ordemDeServico){
-        return ResponseEntity.ok().body(ordemDeServicoService.registraOrdemDeServico(ordemDeServico));
+    public ResponseEntity<?> criaOrdemDeServico(@RequestBody OrdemDeServicoDTO ordemDeServicoDTO){
+        return ordemDeServicoService.registraOrdemDeServico(ordemDeServicoDTO);
     }
 
-    @GetMapping("/busca-ordem-por-placa-{placa}")
+    @GetMapping("/busca-ordem-por-placa/{placa}")
     public ResponseEntity<?> buscarOrdemPorPlacaDoVeiculo(@PathVariable String placa){
-        return ordemDeServicoService.buscaOrdemPorPlaca(placa);
+        return ResponseEntity.ok(ordemDeServicoService.buscaOrdemPorPlaca(placa));
     }
 
 
