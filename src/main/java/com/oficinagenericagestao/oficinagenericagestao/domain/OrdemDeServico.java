@@ -46,4 +46,5 @@ public class OrdemDeServico implements Serializable{
     private BigDecimal valorDoServico;
     private Boolean statusDeOrdem;
 
+
 }
