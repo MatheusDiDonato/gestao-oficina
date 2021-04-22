@@ -6,6 +6,8 @@ import com.oficinagenericagestao.oficinagenericagestao.domain.Cliente;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
 import com.oficinagenericagestao.oficinagenericagestao.domain.OrdemDeServico;
 import com.oficinagenericagestao.oficinagenericagestao.enums.ServicosPrestados;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -76,7 +78,8 @@ public class OrdemDeServicoDTO {
     }
 
     public Endereco converteEndereco(String cep, String complement, Integer number) {
-       return endereco = ClienteUtils.criaEndereco(cep, complement, number);
+            return endereco = ClienteUtils.criaEndereco(cep, complement, number);
+
     }
 
     public OrdemDeServico converteOrdemDeServicoDtoparaOrdemDeServico(){
