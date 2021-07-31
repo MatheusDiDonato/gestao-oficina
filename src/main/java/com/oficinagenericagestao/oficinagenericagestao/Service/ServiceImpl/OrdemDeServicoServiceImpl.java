@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -22,11 +23,6 @@ public class OrdemDeServicoServiceImpl implements OrdemDeServicoService {
     private final ModelMapper mapper;
     private final OrdemDeServicoRepository ordemDeServicoRepository;
     private final CarroRepository carroRepository;
-
-    public ModelMapper modelMapper () {
-        ModelMapper modelMapper = novo ModelMapper ();
-        return modelMapper;
-    }
 
     public ResponseEntity registraOrdemDeServico(@Valid OrdemDeServicoDTO ordemDeServicoDTO) {
         if (ordemDeServicoDTO.getCarro().equals(null)
