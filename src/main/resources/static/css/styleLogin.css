@@ -1,0 +1,20 @@
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 2px 4px 9px 3px rgba(3,0,0,0.2);
+  width: 30%;
+  height: 15cm;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+div.col{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-top: 15%;
+}
+
+div.col input:not(:last-child){
+   margin-bottom: 10px;
+
+}
