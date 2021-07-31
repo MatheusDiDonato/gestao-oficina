@@ -1,21 +1,30 @@
 package com.oficinagenericagestao.oficinagenericagestao.Utils;
 
+import com.oficinagenericagestao.oficinagenericagestao.Dto.ViaCepDto;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Objects;
 
 public class ClienteUtils {
 
     private static final String apiCep = "https://brasilapi.com.br/api/cep/v1/";
 
-    public static Endereco criaEndereco(String cep, String complement, Integer number){
-                  RestTemplate restTemplate = new RestTemplate();
-                  Endereco endereco = restTemplate.getForObject(apiCep + cep, Endereco.class);
-                  endereco.setComplement(complement);
-                  endereco.setNumber(number);
-                  return endereco;
+    public static Endereco criaEndereco(String cep, String complement, String number) {
+        RestTemplate restTemplate = new RestTemplate();
+        ViaCepDto endereco = restTemplate.getForObject(apiCep + cep, ViaCepDto.class);
+        if (!Objects.equals(complement, null)) endereco.setComplemento(complement);
+        if (!Objects.equals(number, null)) endereco.setNumeroDaResidencia(number);
+
+        return Endereco.builder()
+                .numeroDaResidencia(endereco.getNumeroDaResidencia())
+                .cep(endereco.getCep())
+                .estado(endereco.getState())
+                .cidade(endereco.getCity())
+                .bairro(endereco.getNeighborhood())
+                .rua(endereco.getStreet())
+                .complemento(endereco.getComplemento())
+                .build();
     }
 
 }

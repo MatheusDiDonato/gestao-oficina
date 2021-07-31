@@ -4,21 +4,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.oficinagenericagestao.oficinagenericagestao.enums.ServicosPrestados;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 
 @Data
 @NoArgsConstructor
@@ -31,20 +24,37 @@ public class OrdemDeServico implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne (cascade=CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "carro_id")
     private Carro carro;
-    @OneToOne (cascade=CascadeType.PERSIST)
+
+    @OneToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-
     @Enumerated(EnumType.STRING)
+    @Column(name = "CC_SERVICO_PRESTADO")
     private ServicosPrestados servicosPrestados;
-    private Date dataDeEntrada;
-    private String descricao;
-    private BigDecimal valorDoServico;
-    private Boolean statusDeOrdem;
 
+    @Column(name = "CD_CRIACAO_ORDEM")
+    private Date dataCriacaoOrdem;
+
+    @Column(name = "CD_FINALIZACAO_ORDEM")
+    private Date dataFinalizacaoOrdem;
+
+    @Column(name = "CD_ENTRADA_VEICULO")
+    private Date dataDeEntradaVeiculo = new Date();
+
+    @Column(name = "CD_SAIDA_VEICULO")
+    private Date dataDeSaidaVeiculo;
+
+    @Column(name = "CC_DESCRICAO_ORD_SERVICO")
+    private String descricao;
+
+    @Column(name = "CV_VALOR_SERVICO")
+    private BigDecimal valorDoServico;
+
+    @Column(name = "CB_ORDEM_ATIVA")
+    private Boolean ordemAtiva = true;
 
 }

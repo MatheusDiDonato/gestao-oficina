@@ -1,18 +1,15 @@
 package com.oficinagenericagestao.oficinagenericagestao.repository;
 
-import java.util.List;
-
 import com.oficinagenericagestao.oficinagenericagestao.domain.Carro;
-
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface CarroRepository extends CrudRepository<Carro, Long>{
-    
-    @Query(value = "select ca from carro ca where ca.placa_do_veiculo = :placa")
-   List<Carro> findByPlacaDoVeiculo(String placa);
-  
-    
+public interface CarroRepository extends JpaRepository<Carro, Long> {
+
+    @Query(value = "select c from Carro c")
+    List<Carro> findAllCarros();
 }
