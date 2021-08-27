@@ -16,12 +16,13 @@ import org.hibernate.validator.constraints.Range;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Carro implements Serializable {
+@Table(name = "Veiculo")
+public class Veiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long carroId;
+	private Long veiculoId;
 
 	@Column(name = "CC_MARCA_VEICULO")
 	private String marcaDoVeiculo;
@@ -50,7 +51,6 @@ public class Carro implements Serializable {
 	@Length(max = 6)
 	@Column(name = "CC_NIVEL_COMBUSTIVEL")
 	private String nivelCombustivel;
-
 
 	@Column(name = "CC_TIPO_COMBUSTIVEL")
 	private String tipoDeCombustivel;

@@ -1,11 +1,10 @@
-package com.oficinagenericagestao.oficinagenericagestao.Controller;
+package com.oficinagenericagestao.oficinagenericagestao.controller;
 
-import com.oficinagenericagestao.oficinagenericagestao.Dto.OrdemDeServicoDTO;
-import com.oficinagenericagestao.oficinagenericagestao.Service.ServiceImpl.OrdemDeServicoServiceImpl;
+import com.oficinagenericagestao.oficinagenericagestao.dto.OrdemDeServicoDTO;
+import com.oficinagenericagestao.oficinagenericagestao.service.serviceImpl.OrdemDeServicoServiceImpl;
 import com.oficinagenericagestao.oficinagenericagestao.repository.OrdemDeServicoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 

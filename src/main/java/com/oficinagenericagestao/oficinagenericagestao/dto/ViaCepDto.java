@@ -1,4 +1,4 @@
-package com.oficinagenericagestao.oficinagenericagestao.Dto;
+package com.oficinagenericagestao.oficinagenericagestao.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

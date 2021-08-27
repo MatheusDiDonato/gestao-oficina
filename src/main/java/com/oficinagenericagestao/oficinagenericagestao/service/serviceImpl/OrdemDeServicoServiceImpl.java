@@ -1,10 +1,10 @@
-package com.oficinagenericagestao.oficinagenericagestao.Service.ServiceImpl;
+package com.oficinagenericagestao.oficinagenericagestao.service.serviceImpl;
 
-import Exceptions.OrdemDeServiceException;
-import com.oficinagenericagestao.oficinagenericagestao.Dto.OrdemDeServicoDTO;
-import com.oficinagenericagestao.oficinagenericagestao.Service.OrdemDeServicoService;
+import exceptions.OrdemDeServiceException;
+import com.oficinagenericagestao.oficinagenericagestao.dto.OrdemDeServicoDTO;
+import com.oficinagenericagestao.oficinagenericagestao.service.OrdemDeServicoService;
 import com.oficinagenericagestao.oficinagenericagestao.domain.OrdemDeServico;
-import com.oficinagenericagestao.oficinagenericagestao.repository.CarroRepository;
+import com.oficinagenericagestao.oficinagenericagestao.repository.VeiculoRepository;
 import com.oficinagenericagestao.oficinagenericagestao.repository.OrdemDeServicoRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +20,7 @@ public class OrdemDeServicoServiceImpl implements OrdemDeServicoService {
 
     private final ModelMapper mapper;
     private final OrdemDeServicoRepository ordemDeServicoRepository;
-    private final CarroRepository carroRepository;
+    private final VeiculoRepository veiculoRepository;
 
     public ModelMapper modelMapper () {
         ModelMapper modelMapper = new ModelMapper ();
@@ -29,7 +28,7 @@ public class OrdemDeServicoServiceImpl implements OrdemDeServicoService {
     }
 
     public ResponseEntity registraOrdemDeServico(@Valid OrdemDeServicoDTO ordemDeServicoDTO) {
-        if (ordemDeServicoDTO.getCarro().equals(null)
+        if (ordemDeServicoDTO.getVeiculo().equals(null)
                 || ordemDeServicoDTO.getCliente().equals(null)) {
             throw new OrdemDeServiceException("Cliente ou Veiculo não podem ser nulos.");
         }
@@ -40,6 +39,10 @@ public class OrdemDeServicoServiceImpl implements OrdemDeServicoService {
 
     @Override
     public List<OrdemDeServico> findOrdemDeServicoByPlacaVeiculo(String placa) {
-        return ordemDeServicoRepository.findOrdemServicosByPlaca(placa);
+        List<OrdemDeServico> ordemDeServico = ordemDeServicoRepository.findOrdemDeServicoByPlacaDoVeiculo(placa);
+        if (ordemDeServico.isEmpty())
+            throw new OrdemDeServiceException("Não foram encontradas ordens de serviço para esta placa!");
+        else return ordemDeServico;
     }
+
 }

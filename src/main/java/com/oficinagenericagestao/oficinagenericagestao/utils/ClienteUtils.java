@@ -1,6 +1,6 @@
-package com.oficinagenericagestao.oficinagenericagestao.Utils;
+package com.oficinagenericagestao.oficinagenericagestao.utils;
 
-import com.oficinagenericagestao.oficinagenericagestao.Dto.ViaCepDto;
+import com.oficinagenericagestao.oficinagenericagestao.dto.ViaCepDto;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
 import org.springframework.web.client.RestTemplate;
 

@@ -11,7 +11,6 @@ import com.oficinagenericagestao.oficinagenericagestao.enums.ServicosPrestados;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 
 @Data
 @NoArgsConstructor
@@ -26,7 +25,7 @@ public class OrdemDeServico implements Serializable{
 
     @OneToOne
     @JoinColumn(name = "carro_id")
-    private Carro carro;
+    private Veiculo veiculo;
 
     @OneToOne
     @JoinColumn(name = "cliente_id")

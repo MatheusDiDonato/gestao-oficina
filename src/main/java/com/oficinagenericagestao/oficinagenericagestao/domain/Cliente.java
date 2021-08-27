@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -12,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.web.client.RestTemplate;
 
 @Data
 @AllArgsConstructor
@@ -37,6 +35,6 @@ public class Cliente implements Serializable {
 	private List<Endereco> enderecoCliente;
 
 	@OneToMany
-	private List<Carro> carrosCliente;
+	private List<Veiculo> carrosCliente;
 
 }
