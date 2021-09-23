@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface OrdemDeServicoRepository extends JpaRepository<OrdemDeServico, Long>{
 
-    @Query(value = "select o from OrdemDeServico o where o.veiculo.placaDoVeiculo = :placa")
+    @Query(value = "select o from OrdemDeServico o where o.veiculo.placaVeiculo = :placa")
     List<OrdemDeServico> findOrdemDeServicoByPlacaDoVeiculo(String placa);
 
 }

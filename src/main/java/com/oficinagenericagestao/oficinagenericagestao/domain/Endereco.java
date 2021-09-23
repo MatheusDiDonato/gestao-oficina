@@ -17,13 +17,14 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "ENDERECO")
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long endrecoId;
+	private Long idEndereco;
 
 	@Column(name = "CC_NUMERO")
 	private String numeroDaResidencia;

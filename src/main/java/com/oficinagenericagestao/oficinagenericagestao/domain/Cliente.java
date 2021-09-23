@@ -1,26 +1,28 @@
 package com.oficinagenericagestao.oficinagenericagestao.domain;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "CLIENTE")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long idCliente;
 
 	@NotNull
 	@NotEmpty
@@ -28,13 +30,20 @@ public class Cliente implements Serializable {
 	@Column(name = "CC_NOME_CLIENTE")
 	private String nomeCliente;
 
-	@OneToMany
-	private List<TelefonesContato> telefonesContato;
+	@CPF
+	private String cpf;
 
 	@OneToMany
-	private List<Endereco> enderecoCliente;
+	private List<Telefones> telefones;
+
+	@OneToOne
+	private Endereco endereco;
 
 	@OneToMany
-	private List<Veiculo> carrosCliente;
+	private List<Veiculo> veiculos;
+
+
+
+
 
 }

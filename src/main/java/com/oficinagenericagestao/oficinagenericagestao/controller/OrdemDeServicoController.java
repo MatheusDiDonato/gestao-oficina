@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/ordem")
+@RequestMapping("/ordem-de-servico")
 public class OrdemDeServicoController {
 
 
@@ -19,17 +19,17 @@ public class OrdemDeServicoController {
     public final OrdemDeServicoServiceImpl ordemDeServicoServiceImpl;
 
 
-    @GetMapping("/busca-ordens-de-servico")
+    @GetMapping("/busca")
     public ResponseEntity<?> buscaOrdens() {
         return ResponseEntity.ok().body(ordemDeServicoRepository.findAll());
     }
 
-    @PostMapping("/registra-ordem")
+    @PostMapping("/registrar")
     public ResponseEntity<?> criaOrdemDeServico(@RequestBody OrdemDeServicoDTO ordemDeServicoDTO) {
         return ordemDeServicoServiceImpl.registraOrdemDeServico(ordemDeServicoDTO);
     }
 
-    @GetMapping("/busca-ordem-por-placa/{placa}")
+    @GetMapping("/busca-por-placa/{placa}")
     public ResponseEntity<?> buscarOrdemPorPlacaDoVeiculo(@PathVariable String placa) {
         return ResponseEntity.ok(ordemDeServicoServiceImpl.findOrdemDeServicoByPlacaVeiculo(placa));
     }
