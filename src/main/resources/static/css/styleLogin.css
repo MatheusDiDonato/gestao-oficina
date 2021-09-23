@@ -1,0 +1,68 @@
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 2px 4px 9px 3px rgba(3, 0, 0, 0.2);
+    width: 30%;
+    height: 16cm;
+    margin: 0 auto;
+    margin-top: 5%;
+
+}
+
+.login-span {
+    display: inline-grid;
+    flex-direction: column;
+    width: 230px;
+    margin-top: 15px;
+}
+
+.login-span .texto {
+    font-family: "Comic Sans MS";
+    text-align: left;
+    margin-top: 10px;
+}
+
+.form-login {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.login-span .texto .botao-login {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+div.col input:not(:last-child) {
+    margin-bottom: 30%;
+
+}
+
+.card .icone-login {
+    text-align: center;
+}
+
+.div-btn-login {
+    position: relative;
+    top: 30px;
+    font-family: "Comic Sans MS";
+}
+
+.btn-login{
+    text-decoration: thistle;
+    font-family: "Comic Sans MS";
+    color: -internal-light-dark(blue, red);
+    box-shadow: 2px 4px 9px 3px rgba(3, 0, 0, 0.2);
+    transition: all .25s ease;
+    width: 200px;
+}
+
+.esqueci-senha{
+    position: relative;
+    top: 70px;
+    text-decoration: none;
+}

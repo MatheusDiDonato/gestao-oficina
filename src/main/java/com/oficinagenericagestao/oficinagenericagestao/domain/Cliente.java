@@ -1,32 +1,49 @@
 package com.oficinagenericagestao.oficinagenericagestao.domain;
 
-import java.io.Serializable;
-
-import javax.persistence.*;
-import javax.transaction.Transactional;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.client.RestTemplate;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Transactional
+@Table(name = "CLIENTE")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String nome;
-	private String telefone;
+	private Long idCliente;
 
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "endereco_id")
+	@NotNull
+	@NotEmpty
+	@Length(min = 3, max = 255)
+	@Column(name = "CC_NOME_CLIENTE")
+	private String nomeCliente;
+
+	@CPF
+	private String cpf;
+
+	@OneToMany
+	private List<Telefones> telefones;
+
+	@OneToOne
 	private Endereco endereco;
+
+	@OneToMany
+	private List<Veiculo> veiculos;
+
+
+
+
 
 }
