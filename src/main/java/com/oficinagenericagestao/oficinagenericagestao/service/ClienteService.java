@@ -12,4 +12,6 @@ public interface ClienteService {
      ClienteDto findClienteByCpf(String cpf);
 
     List<ClienteDto> findAllClientes();
+
+    ClienteDto cadastrarCliente(ClienteDto clienteRecebido);
 }

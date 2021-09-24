@@ -1,5 +1,7 @@
 package com.oficinagenericagestao.oficinagenericagestao.utils;
 
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 import com.oficinagenericagestao.oficinagenericagestao.dto.ViaCepDto;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
 import org.springframework.web.client.RestTemplate;
@@ -25,6 +27,16 @@ public class ClienteUtils {
                 .rua(endereco.getStreet())
                 .complemento(endereco.getComplemento())
                 .build();
+    }
+
+    public static boolean cpfValido(String cpf){
+        try {
+            CPFValidator cpfValidator =  new CPFValidator();
+            cpfValidator.assertValid(cpf);
+        }catch (InvalidStateException e){
+            e.getInvalidMessages();
+        }
+       return true;
     }
 
 }

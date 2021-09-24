@@ -40,4 +40,9 @@ public class ClienteServiceImpl implements ClienteService {
       });
        return listaClientesDto;
     }
+
+    @Override
+    public ClienteDto cadastrarCliente(ClienteDto clienteRecebido) {
+    return clienteRecebido;
+    }
 }
