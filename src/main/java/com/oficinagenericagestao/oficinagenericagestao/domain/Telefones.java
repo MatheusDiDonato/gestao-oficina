@@ -11,16 +11,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TelefonesContato {
+@Table(name = "TELEFONE")
+public class Telefones {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long telefoneId;
+    private Long idTelefone;
 
     @Column(name = "CC_TIPO_CONTATO")
     @Enumerated(EnumType.STRING)
     private TipoDeNumeroTelefonico tipoDeNumeroTelefonico;
 
     @Column(name = "CC_NUMERO_CONTATO")
-    private String telefoneContato;
+    private String numeroTelefone;
+
 }

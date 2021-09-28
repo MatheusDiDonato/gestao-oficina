@@ -13,6 +13,6 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
     @Query(value = "select v from Veiculo v")
      List<Veiculo> findAllVeiculos();
 
-    @Query(value = "select v from Veiculo v where v.placaDoVeiculo =:placa")
+    @Query(value = "select v from Veiculo v where v.placaVeiculo =:placa")
     List<Veiculo> findByPlacaDoVeiculo(String placa);
 }

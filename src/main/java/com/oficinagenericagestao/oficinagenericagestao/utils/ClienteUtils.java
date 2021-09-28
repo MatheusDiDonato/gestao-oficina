@@ -2,6 +2,7 @@ package com.oficinagenericagestao.oficinagenericagestao.utils;
 
 import com.oficinagenericagestao.oficinagenericagestao.dto.ViaCepDto;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
+import com.oficinagenericagestao.oficinagenericagestao.service.Exception.ClienteException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
@@ -25,6 +26,12 @@ public class ClienteUtils {
                 .rua(endereco.getStreet())
                 .complemento(endereco.getComplemento())
                 .build();
+    }
+
+    public static boolean validadorDeTelefone(String telefone){
+        if(telefone.matches("[0-9]*")){
+            return true;
+        }else throw new ClienteException("Numero de telefone incorreto");
     }
 
 }

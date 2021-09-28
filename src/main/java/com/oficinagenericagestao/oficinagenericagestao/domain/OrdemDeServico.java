@@ -16,12 +16,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "ORDEM_DE_SERVICO")
 public class OrdemDeServico implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idOrdemDeServico;
 
     @OneToOne
     @JoinColumn(name = "carro_id")

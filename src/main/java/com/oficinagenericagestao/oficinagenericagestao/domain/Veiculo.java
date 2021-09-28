@@ -16,44 +16,45 @@ import org.hibernate.validator.constraints.Range;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Veiculo")
+@Table(name = "VEICULO")
 public class Veiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long veiculoId;
+	private Long idVeiculo;
 
 	@Column(name = "CC_MARCA_VEICULO")
-	private String marcaDoVeiculo;
+	private String marcaVeiculo;
 
 	@Column(name = "CC_MODEL_VEICULO")
-	private String modeloDoVeiculo;
+	private String modeloVeiculo;
 
+	@Length(min = 7, max= 7)
 	@Column(name = "CC_PLACA_VEICULO")
-	private String placaDoVeiculo;
+	private String placaVeiculo;
 
 	@Column(name = "CC_COR_VEICULO")
-	private String corDoVeiculo;
+	private String corVeiculo;
 
 	@Column(name = "CV_ANO_FAB_VEIC")
-	private Long anoFabricacaoDoVeiculo;
+	private Long anoFabricacaoVeiculo;
 
 	@Column(name = "CV_ANO_MODELO")
 	private Long anoModelo;
 
 	@Column(name = "CV_NUMERO_MOTOR_VEICULO")
-	private Long numeroDeMotorDoVeiculo;
+	private Long numeroMotorVeiculo;
 
 	@Column(name = "CV_NUM_PORTAS_VEICULO")
-	private Long numeroDePortasDoVeiculo;
+	private Long numeroPortasDoVeiculo;
 
 	@Length(max = 6)
 	@Column(name = "CC_NIVEL_COMBUSTIVEL")
 	private String nivelCombustivel;
 
 	@Column(name = "CC_TIPO_COMBUSTIVEL")
-	private String tipoDeCombustivel;
+	private String tipoCombustivel;
 
 	@ManyToOne
 	private Cliente cliente;
