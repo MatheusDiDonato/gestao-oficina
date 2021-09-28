@@ -30,6 +30,7 @@ public class Veiculo implements Serializable {
 	@Column(name = "CC_MODEL_VEICULO")
 	private String modeloVeiculo;
 
+	@Length(min = 7, max= 7)
 	@Column(name = "CC_PLACA_VEICULO")
 	private String placaVeiculo;
 

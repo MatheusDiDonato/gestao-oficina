@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -25,7 +26,6 @@ public class Cliente implements Serializable {
 	private Long idCliente;
 
 	@NotNull
-	@NotEmpty
 	@Length(min = 3, max = 255)
 	@Column(name = "CC_NOME_CLIENTE")
 	private String nomeCliente;
@@ -33,17 +33,16 @@ public class Cliente implements Serializable {
 	@CPF
 	private String cpf;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Telefones> telefones;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Veiculo> veiculos;
 
+	private Date dataCriacao;
 
-
-
-
+	private Date dataAtualizacao;
 }

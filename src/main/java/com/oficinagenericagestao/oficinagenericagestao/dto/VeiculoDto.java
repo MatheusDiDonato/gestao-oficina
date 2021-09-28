@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VeiculoDto {
+public class VeiculoDto implements Serializable {
 
     private String marcaDoVeiculo;
 
@@ -30,5 +32,4 @@ public class VeiculoDto {
 
     private String tipoDeCombustivel;
 
-    private Cliente cliente;
 }

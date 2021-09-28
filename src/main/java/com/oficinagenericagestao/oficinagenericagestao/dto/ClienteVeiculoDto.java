@@ -2,12 +2,11 @@ package com.oficinagenericagestao.oficinagenericagestao.dto;
 
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Telefones;
+import com.oficinagenericagestao.oficinagenericagestao.domain.Veiculo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,16 +14,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteDto implements Serializable {
+public class ClienteVeiculoDto implements Serializable {
 
-    @NotNull
     private String nomeCliente;
-    @NotNull
     private String cpf;
-
-    @Length(min = 6, max = 8)
-    private List<TelefoneDto> telefones;
+    private List<Telefones> telefones;
+    private Endereco endereco;
+    private List<Veiculo> veiculos;
     private Date dataCriacao;
     private Date dataAtualizacao;
-    private EnderecoDto enderecoDto;
 }
