@@ -57,6 +57,7 @@ public class Veiculo implements Serializable {
 	private String tipoCombustivel;
 
 	@ManyToOne
+	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 }
 

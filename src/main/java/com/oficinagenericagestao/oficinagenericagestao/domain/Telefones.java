@@ -25,4 +25,8 @@ public class Telefones {
     @Column(name = "CC_NUMERO_CONTATO")
     private String numeroTelefone;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+
 }
