@@ -21,9 +21,16 @@ import java.util.List;
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idCliente;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Telefones> telefones;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Veiculo> veiculos;
 
 	@NotNull
 	@Length(min = 3, max = 255)
@@ -33,14 +40,9 @@ public class Cliente implements Serializable {
 	@CPF
 	private String cpf;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Telefones> telefones;
-
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Endereco endereco;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Veiculo> veiculos;
 
 	private Date dataCriacao;
 

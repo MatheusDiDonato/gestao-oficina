@@ -46,4 +46,9 @@ public class Endereco implements Serializable {
 
 	@Column(name = "CC_COMPLEMENTO")
 	private String complemento;
+
+	@OneToOne
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
+
 }
