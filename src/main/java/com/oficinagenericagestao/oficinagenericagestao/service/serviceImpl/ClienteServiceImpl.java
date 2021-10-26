@@ -46,7 +46,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public ClienteDto cadastrarCliente(ClienteDto clienteDto) {
         clienteDto.setDataCriacao(new Date());
-        clienteDto.getTelefones().forEach(e->{
+        clienteDto.getTelefones().forEach(e -> {
             ClienteUtils.validadorDeTelefone(e.getNumeroTelefone());
         });
         if (Objects.nonNull(clienteRepository.findClienteByCpf(clienteDto.getCpf()))) {
@@ -62,7 +62,7 @@ public class ClienteServiceImpl implements ClienteService {
     public ClienteVeiculoDto findClienteAndVeiculosByCpf(String cpf) {
         try {
             return mapper.map(clienteRepository.findClienteByCpf(cpf), ClienteVeiculoDto.class);
-        }catch (NullPointerException | IllegalArgumentException e){
+        } catch (NullPointerException | IllegalArgumentException e) {
             throw new ClienteException("Cliente não encontrado com este cpf");
         }
     }
