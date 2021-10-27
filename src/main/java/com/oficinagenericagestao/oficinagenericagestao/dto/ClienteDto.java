@@ -1,5 +1,6 @@
 package com.oficinagenericagestao.oficinagenericagestao.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Telefones;
 import lombok.AllArgsConstructor;
@@ -19,12 +20,15 @@ public class ClienteDto implements Serializable {
 
     @NotNull
     private String nomeCliente;
+
     @NotNull
     private String cpf;
 
     @Length(min = 6, max = 8)
     private List<TelefoneDto> telefones;
+
     private Date dataCriacao;
+
     private Date dataAtualizacao;
     private EnderecoDto enderecoDto;
 }

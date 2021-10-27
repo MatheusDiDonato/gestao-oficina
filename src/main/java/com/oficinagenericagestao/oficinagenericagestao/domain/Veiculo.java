@@ -56,7 +56,7 @@ public class Veiculo implements Serializable {
 	@Column(name = "CC_TIPO_COMBUSTIVEL")
 	private String tipoCombustivel;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 }
