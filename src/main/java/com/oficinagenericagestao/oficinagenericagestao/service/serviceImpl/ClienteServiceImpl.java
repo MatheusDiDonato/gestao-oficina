@@ -1,16 +1,20 @@
 package com.oficinagenericagestao.oficinagenericagestao.service.serviceImpl;
 
 import com.oficinagenericagestao.oficinagenericagestao.domain.Cliente;
+import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
 import com.oficinagenericagestao.oficinagenericagestao.dto.ClienteDto;
 import com.oficinagenericagestao.oficinagenericagestao.dto.ClienteVeiculoDto;
 import com.oficinagenericagestao.oficinagenericagestao.repository.ClienteRepository;
+import com.oficinagenericagestao.oficinagenericagestao.repository.EnderecoRepository;
 import com.oficinagenericagestao.oficinagenericagestao.service.ClienteService;
 import com.oficinagenericagestao.oficinagenericagestao.service.Exception.ClienteException;
 import com.oficinagenericagestao.oficinagenericagestao.utils.ClienteUtils;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionSystemException;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +26,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     private final ModelMapper mapper;
     private final ClienteRepository clienteRepository;
+    private final EnderecoRepository enderecoRepository;
 
     @Override
     public ClienteDto findClienteByCpf(String cpf) {
@@ -44,16 +49,20 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public ClienteDto cadastrarCliente(ClienteDto clienteDto) {
-        clienteDto.setDataCriacao(new Date());
-        clienteDto.getTelefones().forEach(e->{
-            ClienteUtils.validadorDeTelefone(e.getNumeroTelefone());
-        });
-        if (Objects.nonNull(clienteRepository.findClienteByCpf(clienteDto.getCpf()))) {
-            throw new ClienteException("Cliente já cadastrado na base");
-        } else {
-            Cliente cliente = mapper.map(clienteDto, Cliente.class);
-            clienteRepository.save(cliente);
+    public ClienteDto cadastrarCliente(@Valid ClienteDto clienteDto) {
+        try {
+            clienteDto.setDataCriacao(new Date());
+            clienteDto.getTelefones().forEach(e -> {
+                ClienteUtils.validadorDeTelefone(e.getNumeroTelefone());
+            });
+            if (Objects.nonNull(clienteRepository.findClienteByCpf(clienteDto.getCpf()))) {
+                throw new ClienteException("Cliente já cadastrado na base");
+            } else {
+                Cliente cliente = mapper.map(clienteDto, Cliente.class);
+                clienteRepository.save(cliente);
+            }
+        }catch (TransactionSystemException e){
+            throw new ClienteException("CPF INVALIDO");
         }
         return clienteDto;
     }
@@ -62,7 +71,7 @@ public class ClienteServiceImpl implements ClienteService {
     public ClienteVeiculoDto findClienteAndVeiculosByCpf(String cpf) {
         try {
             return mapper.map(clienteRepository.findClienteByCpf(cpf), ClienteVeiculoDto.class);
-        }catch (NullPointerException | IllegalArgumentException e){
+        } catch (NullPointerException | IllegalArgumentException e) {
             throw new ClienteException("Cliente não encontrado com este cpf");
         }
     }

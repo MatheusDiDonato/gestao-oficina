@@ -1,7 +1,9 @@
 package com.oficinagenericagestao.oficinagenericagestao.utils;
 
-import com.oficinagenericagestao.oficinagenericagestao.dto.ViaCepDto;
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 import com.oficinagenericagestao.oficinagenericagestao.domain.Endereco;
+import com.oficinagenericagestao.oficinagenericagestao.dto.ViaCepDto;
 import com.oficinagenericagestao.oficinagenericagestao.service.Exception.ClienteException;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,10 +30,20 @@ public class ClienteUtils {
                 .build();
     }
 
-    public static boolean validadorDeTelefone(String telefone){
-        if(telefone.matches("[0-9]*")){
+    public static boolean validadorDeTelefone(String telefone) {
+        if (telefone.matches("[0-9]*")) {
             return true;
-        }else throw new ClienteException("Numero de telefone incorreto");
+        } else throw new ClienteException("Numero de telefone incorreto");
+    }
+
+    public static boolean cpfValido(String cpf) {
+        try {
+            CPFValidator cpfValidator = new CPFValidator();
+            cpfValidator.assertValid(cpf);
+        } catch (InvalidStateException e) {
+            e.getInvalidMessages();
+        }
+        return true;
     }
 
 }
