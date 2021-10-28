@@ -2,31 +2,35 @@ package com.oficinagenericagestao.oficinagenericagestao.domain;
 
 import com.oficinagenericagestao.oficinagenericagestao.enums.TipoDeNumeroTelefonico;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "TELEFONE")
-public class Telefones {
+public class Telefone implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTelefone;
 
-    @Column(name = "CC_TIPO_CONTATO")
+    @Column(name = "TIPO_CONTATO")
     @Enumerated(EnumType.STRING)
     private TipoDeNumeroTelefonico tipoDeNumeroTelefonico;
 
-    @Column(name = "CC_NUMERO_CONTATO")
+    @Column(name = "NUMERO_CONTATO")
     private String numeroTelefone;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_CLIENTE")
     private Cliente cliente;
 
 }
