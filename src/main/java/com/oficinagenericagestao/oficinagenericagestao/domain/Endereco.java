@@ -19,28 +19,31 @@ public class Endereco implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEndereco;
 
-    @Column(name = "CC_NUMERO")
+    @Column(name = "NUMERO")
     private String numeroDaResidencia;
 
-    @Column(name = "CC_CEP")
+    @Column(name = "CEP")
     private String cep;
 
-    @Column(name = "CC_ESTADO")
+    @Column(name = "ESTADO")
     private String estado;
 
-    @Column(name = "CC_CIDADE")
+    @Column(name = "CIDADE")
     private String cidade;
 
-    @Column(name = "CC_BAIRRO")
+    @Column(name = "BAIRRO")
     private String bairro;
 
-    @Column(name = "CC_RUA")
+    @Column(name = "RUA")
     private String rua;
 
-    @Column(name = "CC_COMPLEMENTO")
+    @Column(name = "COMPLEMENTO")
     private String complemento;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_CLIENTE")
+    private Cliente cliente;
 }
