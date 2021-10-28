@@ -1,5 +1,6 @@
 package com.oficinagenericagestao.oficinagenericagestao.controller;
 
+import com.oficinagenericagestao.oficinagenericagestao.domain.Cliente;
 import com.oficinagenericagestao.oficinagenericagestao.dto.ClienteDto;
 import com.oficinagenericagestao.oficinagenericagestao.dto.ClienteVeiculoDto;
 import com.oficinagenericagestao.oficinagenericagestao.service.ClienteService;
